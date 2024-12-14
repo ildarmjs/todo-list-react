@@ -1,0 +1,27 @@
+.filters {
+	display: flex;
+	justify-content: end;
+	gap: 10px; // Пример отступа между кнопками
+}
+
+.button {
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	background: transparent;
+	border: 1px solid #316adb;
+	color: #fff;
+	padding: 8px 20px;
+	transition: all 0.4s ease 0s;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(52, 112, 202, 0.3);
+}
+
+.active {
+	background: #316adb;
+}
+
+.button:hover {
+	transition: all 0.4s ease 0s;
+	background: #316adb;
+}
