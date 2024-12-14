@@ -1,0 +1,8 @@
+.iconButton {
+	cursor: pointer;
+	transition: opacity 0.3s;
+	&.disabled {
+		cursor: not-allowed;
+		opacity: 0.2;
+	}
+}

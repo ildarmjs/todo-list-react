@@ -1,0 +1,21 @@
+.button {
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	background: transparent;
+	border: 1px solid #316adb;
+	color: #fff;
+	padding: 8px 20px;
+	transition: all 0.4s ease 0s;
+	border-radius: 8px;
+	box-shadow: 0 4px 8px 0 rgba(52, 112, 202, 0.3);
+	&:hover {
+		background: #316adb;
+	}
+	&:disabled {
+		border: none;
+		box-shadow: none;
+		background: #b6b5b5;
+		cursor: not-allowed;
+	}
+}
