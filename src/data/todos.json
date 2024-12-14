@@ -1,0 +1,7 @@
+{
+	"todos": [
+		{ "id": 1, "text": "Прочитать 10 страниц", "completed": false },
+		{ "id": 2, "text": "Выгулять собаку", "completed": false },
+		{ "id": 3, "text": "Сделать уборку", "completed": false }
+	]
+}
