@@ -1,35 +1,57 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react'
+import TaskInput from './components/task-input/TaskInput'
+import TaskFilter from './components/task-filter/TaskFilter'
+import TaskList from './components/task-list/TaskList'
+import { useTasks } from './hooks/useTasks'
+import Container from './components/container/Container'
+import TextMessage from './components/ui/text-message/TextMessage'
+import Title from './components/ui/title/Title'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App: React.FC = () => {
+	const {
+		tasks,
+		addTask,
+		toggleTaskCompletion,
+		deleteTask,
+		filter,
+		setFilter,
+		errorMessage,
+		setErrorMessage,
+		saveEditing,
+		hasIncompleteTasks,
+		hasCompletedTasks
+	} = useTasks()
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+	return (
+		<div>
+			<Container>
+				<div className='wrapper'>
+					<Title title='TODO' />
+					<TaskInput
+						onAddTask={addTask}
+						errorMessage={errorMessage}
+						setErrorMessage={setErrorMessage}
+					/>
+					{tasks.length ? (
+						<TaskList
+							tasks={tasks}
+							onToggleCompletion={toggleTaskCompletion}
+							onDelete={deleteTask}
+							onSaveEditing={saveEditing}
+						/>
+					) : (
+						<TextMessage text='У вас нет задач. Добавьте новую задачу!' />
+					)}
+					<TaskFilter
+						filter={filter}
+						setFilter={setFilter}
+						hasIncompleteTasks={hasIncompleteTasks}
+						hasCompletedTasks={hasCompletedTasks}
+					/>
+				</div>
+			</Container>
+		</div>
+	)
 }
 
 export default App
