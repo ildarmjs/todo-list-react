@@ -1,50 +1,41 @@
-# React + TypeScript + Vite
+# Список задач (Todo list)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Это одностраничное приложение, построенное с использованием **React.js**, **TypeScript**, предназначенное создания задач. Данное приложение позвоялет пользователям создавать, удалять и редактировать задачу, фильтровать задачи по категориям.
 
-Currently, two official plugins are available:
+### [Demo](https://todo-list-react-psi-six.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Возможности:
 
-## Expanding the ESLint configuration
+- **Отрисовка всех задач**: Отображение всех задач на экране пользователя.
+- **Создание задачи**: Возможность добавления новой задачи (Нельзя добавить пустую задачу, есть валидация чтобы поле было заполнено)
+- **Удаление, редактирование задачи**: Возможность удалять и редактировать конкретную задачу.
+- **Отмечать задачу, как выполненную**: Можно отметить любую задачу как выполненную, нажав на соответствующий чекбокс рядом с задачей.
+- **Фильтрация**: Возможность фильтровать задачи по категориям "Все" | "Выполненные" | "Невыполненные"
+- **Сохранине задачи в Local Storage**: Все задачи, которые пользователь добавляет сохраняются в LocalStorage
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Технологии:
 
-- Configure the top-level `parserOptions` property like this:
+- **React.js**
+- **TypeScript**
+- **SCSS**
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Установка:
+
+### 1. Клонировать репозиторий
+
+```bash
+git clone https://github.com/ildarmjs/todo-list-react
+cd todo-list-react
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### 2. Установить зависимости
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+```bash
+npm isntall
+```
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+### 3. Запустить приложение
+
+```bash
+npm run dev
 ```
