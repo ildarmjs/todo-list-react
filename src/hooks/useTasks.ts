@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import todosData from '../data/todos.json'
 import { TypeTask } from '../types/todo.types';
 
@@ -27,12 +27,12 @@ export const useTasks = () => {
 		}
 		setErrorMessage('');
 		const newTask: TypeTask = { id: Date.now(), text: taskText, completed: false };
-		setTasks([...tasks, newTask]);
+		setTasks(prevTasks => [...prevTasks, newTask]);
 	};
 
 	const toggleTaskCompletion = (id: number) => {
-		setTasks(
-			tasks.map((task) =>
+		setTasks(prevTasks =>
+			prevTasks.map(task =>
 				task.id === id ? { ...task, completed: !task.completed } : task
 			)
 		);
@@ -41,7 +41,7 @@ export const useTasks = () => {
 	const deleteTask = (id: number) => {
 		const confirmDelete = window.confirm('Вы действительно хотите удалить эту задачу?');
 		if (confirmDelete) {
-			setTasks(tasks.filter((task) => task.id !== id));
+			setTasks(prevTasks => prevTasks.filter(task => task.id !== id));
 		}
 	};
 
@@ -55,19 +55,21 @@ export const useTasks = () => {
 			setErrorMessage('Поле не может быть пустым');
 			return;
 		}
-		setTasks(
-			tasks.map((task) =>
+		setTasks(prevTasks =>
+			prevTasks.map(task =>
 				task.id === id ? { ...task, text: newText } : task
 			)
 		);
 		setErrorMessage('');
 	};
 
-	const filteredTasks = tasks.filter((task) => {
-		if (filter === 'completed') return task.completed;
-		if (filter === 'incomplete') return !task.completed;
-		return true;
-	});
+	const filteredTasks = useMemo(() => {
+		return tasks.filter((task) => {
+			if (filter === 'completed') return task.completed;
+			if (filter === 'incomplete') return !task.completed;
+			return true;
+		});
+	}, [tasks, filter]);
 	const hasCompletedTasks = tasks.some(task => task.completed);
 	const hasIncompleteTasks = tasks.some(task => !task.completed);
 
